@@ -1,6 +1,19 @@
 import cv2
 import numpy as np
+import os
 from matplotlib import pyplot as plt
+
+def getImages(path):
+    fileNames = os.listdir(path)
+    images = []
+    for f in fileNames:
+        archivo = path + f
+        estado = os.stat(archivo)
+        tipo = estado.st_size
+        if (tipo > 689670):
+            img = readImg(archivo)
+            images.append(img)
+    return images
 
 def readImg(path):
     im = cv2.imread(path)
